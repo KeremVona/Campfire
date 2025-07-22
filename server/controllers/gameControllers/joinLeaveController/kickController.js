@@ -7,11 +7,11 @@ import db from "../../../db.js";
  * @param {Object} res - Express response object
  * @param {number} req.body.gameId - ID of the game
  * @param {number} req.body.playerId - ID of the player to be kicked
- * @param {number} req.user - ID of the user making the request (host)
+ * @param {number} req.user.id - ID of the user making the request (host)
  */
 export const kickGameHandler = async (req, res) => {
   const { gameId, playerId } = req.body;
-  const hostId = req.user; // The user making the request (should be the host)
+  const hostId = req.user.id; // The user making the request (should be the host)
 
   try {
     // Check if the game exists and get the host_id from the database

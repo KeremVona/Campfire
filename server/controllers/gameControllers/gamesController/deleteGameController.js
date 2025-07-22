@@ -8,12 +8,12 @@ import db from "../../../db.js";
  * @param {Object} req - Express request object
  * @param {Object} req.params - Route parameters
  * @param {string} req.params.id - ID of the game to be deleted
- * @param {Object} req.user - Authenticated user ID (host)
+ * @param {Object} req.user.id - Authenticated user ID (host)
  * @param {Object} res - Express response object
  */
 export const deleteGameHandler = async (req, res) => {
   const gameId = req.params.id; // Extract game ID from route params
-  const userId = req.user; // Authenticated user ID (host)
+  const userId = req.user.id; // Authenticated user ID (host)
 
   try {
     // Check if the game exists and if the requesting user is the host

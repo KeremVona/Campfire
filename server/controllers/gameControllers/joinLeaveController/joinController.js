@@ -6,12 +6,12 @@ import db from "../../../db.js";
  *
  * Route: POST /api/games/join
  *
- * @param {Object} req - The Express request object (expects `id` in `req.body`, and user ID in `req.user`).
+ * @param {Object} req - The Express request object (expects `id` in `req.body`, and user ID in `req.user.id`).
  * @param {Object} res - The Express response object.
  * @returns {Object} A JSON object containing a message and the current player count.
  */
 export const joinGameHandler = async (req, res) => {
-  const userId = req.user; // Authenticated user's ID
+  const userId = req.user.id; // Authenticated user's ID
   const { id } = req.body; // ID of the game to join
 
   // Validate input

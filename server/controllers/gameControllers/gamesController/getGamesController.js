@@ -3,7 +3,7 @@ import db from "../../../db.js";
 /**
  * Retrieves a list of all games with relevant details.
  *
- * Route: GET /api/games
+ * Route: GET /api/gamesreq
  *
  * @param {Object} req - The Express request object.
  * @param {Object} res - The Express response object.

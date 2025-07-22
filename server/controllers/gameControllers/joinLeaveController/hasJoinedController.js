@@ -5,12 +5,12 @@ import db from "../../../db.js";
  *
  * Route: GET /api/games/:id/has-joined
  *
- * @param {Object} req - The Express request object (expects game ID in `req.params.id` and user ID in `req.user`).
+ * @param {Object} req - The Express request object (expects game ID in `req.params.id` and user ID in `req.user.id`).
  * @param {Object} res - The Express response object.
  * @returns {Object} A JSON object: { hasJoined: true/false }.
  */
 export const hasJoinedGameHandler = async (req, res) => {
-  const userId = req.user; // ID of the currently logged-in user
+  const userId = req.user.id; // ID of the currently logged-in user
   const { id } = req.params; // ID of the game to check
 
   try {

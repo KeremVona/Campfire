@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import HostGame from "./pages/HostGame";
 import GameList from "./pages/GameList";
 import GameDetails from "./pages/GameDetails";
+import TournamentList from "./pages/Tournament/TournamentList";
+import MakeTournament from "./pages/Tournament/MakeTournament";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -35,6 +37,14 @@ function App() {
           <Route
             path="/games/:id"
             element={<ProtectedRoute content={<GameDetails />} />}
+          />
+          <Route
+            path="/tournaments"
+            element={<ProtectedRoute content={<TournamentList />} />}
+          />
+          <Route
+            path="/host-tournament"
+            element={<ProtectedRoute content={<MakeTournament />} />}
           />
         </Routes>
       </BrowserRouter>

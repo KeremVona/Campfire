@@ -6,7 +6,7 @@ import db from "../../../db.js";
  *
  * Route: POST /api/games
  *
- * @param {Object} req - The Express request object (expects game data in body and user ID in `req.user`).
+ * @param {Object} req - The Express request object (expects game data in body and user ID in `req.user.id`).
  * @param {Object} res - The Express response object.
  * @returns {Object} A JSON object containing the made game's details.
  */
@@ -22,7 +22,7 @@ export const postGameHandler = async (req, res) => {
     is_ranked,
   } = req.body;
 
-  const userId = req.user; // The ID of the currently authenticated user (host)
+  const userId = req.user.id; // The ID of the currently authenticated user (host)
 
   try {
     // Insert the new game into the `games` table

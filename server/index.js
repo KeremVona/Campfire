@@ -27,7 +27,7 @@ app.use("/api/tournaments", tournamentRoutes);
 
 // Example protected route
 app.get("/api/protected", authenticateToken, (req, res) => {
-  res.json({ message: `Welcome user ${req.user}` });
+  res.json({ message: `Welcome user ${req.user.id}` });
 });
 
 app.get("/api/health", (req, res) => {
