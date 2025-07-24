@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import TournamentCard from "../components/TournamentCard";
+import TournamentCard from "../../components/tournament/tournament_list/TournamentCard";
 
 export default function TournamentList() {
   const [tournaments, setTournaments] = useState([]);

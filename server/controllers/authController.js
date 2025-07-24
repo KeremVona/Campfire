@@ -4,18 +4,28 @@ import pool from "../db.js";
 import logger from "../utils/logger.js";
 
 export const registerHandler = async (req, res) => {
+  console.log("req.body:", req.body);
   const { username, email, password } = req.body;
+  const isAdmin = false;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const result = await pool.query(
-      "INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id, username, email",
-      [username, email, hashedPassword]
-    );
-
-    logger.log(`User registered: ${username} (${email})`);
-    res.status(201).json(result.rows[0]);
+    if (isAdmin) {
+      const result = await pool.query(
+        "INSERT INTO users (username, email, password_hash, is_admin) VALUES ($1, $2, $3, $4) RETURNING id, username, email",
+        [username, email, hashedPassword, isAdmin]
+      );
+      logger.log(`User registered: ${username} (${email})`);
+      res.status(201).json(result.rows[0]);
+    } else {
+      const result = await pool.query(
+        "INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING id, username, email",
+        [username, email, hashedPassword]
+      );
+      logger.log(`User registered: ${username} (${email})`);
+      res.status(201).json(result.rows[0]);
+    }
   } catch (err) {
     logger.error("Register error:", err.message);
 
@@ -30,7 +40,7 @@ export const registerHandler = async (req, res) => {
 };
 
 export const loginHandler = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
 
   try {
     const result = await pool.query("SELECT * FROM users WHERE email = $1", [
@@ -48,11 +58,15 @@ export const loginHandler = async (req, res) => {
       return res.status(400).json({ error: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { id: user.id, is_admin: user.is_admin },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
 
-    logger.log(`User logged in: ${email}`);
+    logger.log(`User logged in: (${email})`);
     res.json({ token });
   } catch (err) {
     logger.error("Login error:", err.message);

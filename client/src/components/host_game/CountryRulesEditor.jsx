@@ -24,14 +24,14 @@ export default function CountryRulesEditor({
 
   return (
     <div>
-      <label className="block font-semibold mb-1">
-        Country-Specific Rules:
+      <label className="block font-semibold mb-2">
+        🌐 Country-Specific Rules:
       </label>
-      <div className="flex flex-col gap-2 mb-2">
+      <div className="flex flex-col gap-2 mb-4">
         <input
           type="text"
           placeholder="Country (e.g., GER)"
-          className="border p-2"
+          className="bg-gray-800 border border-gray-700 p-2 rounded text-white placeholder-gray-400"
           value={newCountryRule.country}
           onChange={(e) =>
             setNewCountryRule({ ...newCountryRule, country: e.target.value })
@@ -40,7 +40,7 @@ export default function CountryRulesEditor({
         <input
           type="text"
           placeholder="Description"
-          className="border p-2"
+          className="bg-gray-800 border border-gray-700 p-2 rounded text-white placeholder-gray-400"
           value={newCountryRule.description}
           onChange={(e) =>
             setNewCountryRule({
@@ -51,7 +51,7 @@ export default function CountryRulesEditor({
         />
         <button
           type="button"
-          className="bg-blue-500 text-white px-3 w-fit"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded w-fit transition"
           onClick={addRule}
         >
           Add
@@ -71,7 +71,7 @@ export default function CountryRulesEditor({
                     country: e.target.value,
                   })
                 }
-                className="border p-1 w-20"
+                className="bg-gray-800 border border-gray-700 p-1 w-20 rounded text-white"
               />
               <input
                 type="text"
@@ -82,10 +82,10 @@ export default function CountryRulesEditor({
                     description: e.target.value,
                   })
                 }
-                className="border p-1 flex-1"
+                className="bg-gray-800 border border-gray-700 p-1 flex-1 rounded text-white"
               />
               <button
-                className="text-green-600 text-xs"
+                className="text-green-400 text-xs"
                 onClick={() => {
                   const updated = [...countryRules];
                   updated[index] = { ...editCountryValue };
@@ -97,7 +97,7 @@ export default function CountryRulesEditor({
                 Save
               </button>
               <button
-                className="text-gray-500 text-xs"
+                className="text-gray-400 text-xs"
                 onClick={() => {
                   setEditCountryIndex(null);
                   setEditCountryValue({ country: "", description: "" });
@@ -108,11 +108,11 @@ export default function CountryRulesEditor({
             </>
           ) : (
             <>
-              <span className="flex-1">
+              <span className="flex-1 text-gray-300">
                 <strong>{rule.country}</strong>: {rule.description}
               </span>
               <button
-                className="text-blue-600 text-xs"
+                className="text-blue-400 text-xs"
                 onClick={() => {
                   setEditCountryIndex(index);
                   setEditCountryValue(rule);
@@ -121,7 +121,7 @@ export default function CountryRulesEditor({
                 Edit
               </button>
               <button
-                className="text-red-500 text-xs"
+                className="text-red-400 text-xs"
                 onClick={() => removeRule(index)}
               >
                 Remove

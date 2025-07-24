@@ -5,7 +5,7 @@ export default function GameFormFields({ form, handleChange }) {
         type="text"
         name="title"
         placeholder="Game Title"
-        className="border p-2 w-full"
+        className="bg-gray-800 border border-gray-700 p-2 w-full rounded text-white placeholder-gray-400"
         value={form.title}
         onChange={handleChange}
         required
@@ -14,7 +14,7 @@ export default function GameFormFields({ form, handleChange }) {
       <textarea
         name="description"
         placeholder="Description"
-        className="border p-2 w-full"
+        className="bg-gray-800 border border-gray-700 p-2 w-full rounded text-white placeholder-gray-400"
         rows={3}
         value={form.description}
         onChange={handleChange}
@@ -25,28 +25,29 @@ export default function GameFormFields({ form, handleChange }) {
         type="number"
         name="max_players"
         placeholder="Max Players"
-        className="border p-2 w-full"
+        className="bg-gray-800 border border-gray-700 p-2 w-full rounded text-white placeholder-gray-400"
         value={form.max_players}
         onChange={handleChange}
         min={2}
         max={30}
       />
 
-      <label className="flex items-center space-x-2">
+      <label className="flex items-center space-x-2 text-sm">
         <input
           type="checkbox"
           name="is_ranked"
           checked={form.is_ranked}
           onChange={handleChange}
+          className="accent-green-500"
         />
-        <span>Ranked Match</span>
+        <span className="text-gray-300">Ranked Match</span>
       </label>
 
       <input
         type="text"
         name="invite"
         placeholder="Invite Code (optional)"
-        className="border p-2 w-full"
+        className="bg-gray-800 border border-gray-700 p-2 w-full rounded text-white placeholder-gray-400"
         value={form.invite}
         onChange={handleChange}
       />
@@ -54,7 +55,7 @@ export default function GameFormFields({ form, handleChange }) {
       <input
         type="datetime-local"
         name="start_time"
-        className="border p-2 w-full"
+        className="bg-gray-800 border border-gray-700 p-2 w-full rounded text-white"
         value={form.start_time}
         onChange={handleChange}
       />

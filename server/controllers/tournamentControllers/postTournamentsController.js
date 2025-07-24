@@ -1,4 +1,4 @@
-import db from "../../../db.js";
+import db from "../../db.js";
 
 /**
  * Handler to make a new tournament. Only accessible to admin users.
@@ -22,6 +22,7 @@ export const postTournamentHandler = async (req, res) => {
   try {
     // Destructure user info from the authenticated request
     const { id: userId, is_admin } = req.user;
+    console.log(req.user);
 
     // Only allow admins to make tournaments
     if (!is_admin) return res.status(403).json({ error: "Access denied" });

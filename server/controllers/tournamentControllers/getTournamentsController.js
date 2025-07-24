@@ -1,4 +1,4 @@
-import db from "../../../db.js";
+import db from "../../db.js";
 
 /**
  * Get a list of all tournaments with metadata including status.
