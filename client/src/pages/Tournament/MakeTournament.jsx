@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import TournamentForm from "../../components/tournament/make_tournament/TournamentForm";
+import Header from "../../components/ui/Header";
 
 export default function MakeTournament() {
   const navigate = useNavigate();
@@ -36,13 +37,16 @@ export default function MakeTournament() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-[#1e1e1e] rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-white">Make Tournament</h2>
-      <TournamentForm
-        form={form}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
-    </div>
+    <>
+      <Header />
+      <div className="max-w-xl mx-auto p-6 bg-[#1e1e1e] rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-6 text-white">Make Tournament</h2>
+        <TournamentForm
+          form={form}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+      </div>
+    </>
   );
 }

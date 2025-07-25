@@ -5,6 +5,8 @@ import GameInfo from "../components/game_details/GameInfo";
 import RuleSection from "../components/game_details/RuleSection";
 import JoinLeaveControls from "../components/game_details/JoinLeaveControls";
 import PlayerList from "../components/game_details/PlayerList";
+import Spinner from "../components/ui/Spinner";
+import Header from "../components/ui/Header";
 
 export default function GameDetails() {
   const { id } = useParams(); // gameId
@@ -191,28 +193,31 @@ export default function GameDetails() {
   };
 
   if (error) return <p className="text-red-500">{error}</p>;
-  if (!game) return <p className="text-white">Loading game...</p>;
+  if (!game) return <Spinner />;
 
   const isHost = userId === game.host_id;
 
   return (
-    <div className="p-6 text-white bg-[#1e1e2f] min-h-screen">
-      <GameInfo game={game} isHost={isHost} onDelete={handleDelete} />
-      <RuleSection
-        generalRules={game.generalRules}
-        countryRules={game.countryRules}
-      />
-      <JoinLeaveControls
-        hasJoined={hasJoined}
-        onJoin={handleJoin}
-        onLeave={handleLeave}
-      />
-      <PlayerList
-        players={players}
-        isHost={isHost}
-        userId={userId}
-        onKick={handleKick}
-      />
-    </div>
+    <>
+      <Header />
+      <div className="p-6 text-white bg-[#1e1e2f] min-h-screen">
+        <GameInfo game={game} isHost={isHost} onDelete={handleDelete} />
+        <RuleSection
+          generalRules={game.generalRules}
+          countryRules={game.countryRules}
+        />
+        <JoinLeaveControls
+          hasJoined={hasJoined}
+          onJoin={handleJoin}
+          onLeave={handleLeave}
+        />
+        <PlayerList
+          players={players}
+          isHost={isHost}
+          userId={userId}
+          onKick={handleKick}
+        />
+      </div>
+    </>
   );
 }

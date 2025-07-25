@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import Navbar from "../components/Navbar"; // adjust path if needed
+import Header from "../components/ui/Header";
 
 const GameList = () => {
   const [games, setGames] = useState([]);
@@ -27,7 +27,7 @@ const GameList = () => {
 
   return (
     <>
-      {/*<Navbar />*/}
+      <Header />
       <div className="p-6 text-white bg-[#1e1e2f] min-h-screen">
         <h1 className="text-2xl font-bold text-[#ffcc00] mb-6">Hosted Games</h1>
         <div className="space-y-4">
