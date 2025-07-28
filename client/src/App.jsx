@@ -12,6 +12,7 @@ import GameList from "./pages/GameList";
 import GameDetails from "./pages/GameDetails";
 import TournamentList from "./pages/Tournament/TournamentList";
 import MakeTournament from "./pages/Tournament/MakeTournament";
+import TournamentDetails from "./pages/Tournament/TournamentDetails";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -45,6 +46,10 @@ function App() {
           <Route
             path="/host-tournament"
             element={<ProtectedRoute content={<MakeTournament />} />}
+          />
+          <Route
+            path="/tournaments/:id"
+            element={<ProtectedRoute content={<TournamentDetails />} />}
           />
         </Routes>
       </BrowserRouter>

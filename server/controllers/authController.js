@@ -4,7 +4,7 @@ import pool from "../db.js";
 import logger from "../utils/logger.js";
 
 export const registerHandler = async (req, res) => {
-  console.log("req.body:", req.body);
+  // console.log("req.body:", req.body);
   const { username, email, password } = req.body;
   const isAdmin = false;
 
